@@ -120,9 +120,8 @@ class ApplicationController < Sinatra::Base
     end
 
     post '/app_reviews' do 
-        user = User.find(session[:user_id])
-        title = params[:title]
-        body = params[:body]
+        comment = params[:comment]
+        star_rating = params[:star_rating]
 
         if(comment.present? && star_rating.present?)
             app_review = AppReview.create(comment: comment, star_rating: body, user_id: user.id)
