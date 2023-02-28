@@ -3,8 +3,7 @@ puts "Seeding sample data..."
 # create 50 users
 50.times do
   User.create(
-    first_name: Faker::Name.first_name,
-    last_name: Faker::Name.last_name,
+    username: Faker::Internet.username,
     email: Faker::Internet.email
   )
 end
@@ -42,11 +41,6 @@ end
     user_id: rand(User.first.id..User.last.id)
   )
 end
-
-
-
-
-
 
 
 puts "Done seeding!"
