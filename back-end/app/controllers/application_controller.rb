@@ -1,5 +1,11 @@
 class ApplicationController < Sinatra::Base
 
+before do
+  headers 'Access-Control-Allow-Origin' => '*',
+          'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
+          'Access-Control-Allow-Headers' => 'Content-Type'
+end
+
     get '/restaurants' do
         Restaurant.all.to_json
     end
