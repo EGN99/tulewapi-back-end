@@ -14,6 +14,18 @@ end
         Restaurant.find(params[:id]).to_json
     end
 
+    get '/MyRestaurant/:id' do
+        restaurant = Restaurant.find(params[:id])
+        restaurant.to_json(include: { 
+            reviews: { 
+            only: [:comment], 
+            include: { 
+                user: { only: [:username] } 
+            } 
+            } 
+        })
+    end
+
     get '/restaurantsby' do
         pp params
         Restaurant.find_by(params).to_json
@@ -54,7 +66,7 @@ end
     end
 
     get '/app_reviews' do
-        AppReview.all.to_json
+        AppReview.all.to_json(only: [:comment], include: {user: {only: [:id, :username]}})
     end
 
     get '/app_reviews/:id' do
@@ -98,6 +110,12 @@ end
             message.to_json
         end
     end
+
+    # delete '/app_reviews/:id' do
+    #     user = User.find(params[:userId])
+    #     review = user.app_reviews.find(params[:id])
+    #     review.destroy
+    # end
 
     delete "/reviews/:id" do
         count_reviews = Review.where(id: params[:id]).count()
