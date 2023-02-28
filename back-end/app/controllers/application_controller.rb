@@ -47,6 +47,14 @@ class ApplicationController < Sinatra::Base
         Favorite.find(params[:id]).to_json
     end
 
+    get '/app_reviews' do
+        AppReview.all.to_json
+    end
+
+    get '/app_reviews/:id' do
+        AppReview.find(params[:id]).to_json
+    end
+
     post '/users' do 
         username = params[:username]
         email = params[:email]
@@ -107,6 +115,39 @@ class ApplicationController < Sinatra::Base
             message.to_json
         else
             message = {:error => "Not a favorite"}
+            message.to_json
+        end
+    end
+
+    post '/app_reviews' do 
+        user = User.find(session[:user_id])
+        title = params[:title]
+        body = params[:body]
+
+        if(comment.present? && star_rating.present?)
+            app_review = AppReview.create(comment: comment, star_rating: body, user_id: user.id)
+            if app_review
+                message = {:success => "Review created successfully"}
+                message.to_json
+            else 
+                message = {:error => "Error saving review"}
+                message.to_json
+            end
+        else
+            message = {:error => "cannot save an empty review"}
+            message.to_json
+        end
+    end
+
+    delete "/app_reviews/:id" do
+        count_app_reviews = AppReview.where(id: params[:id]).count()
+        if count_app_reviews > 0
+            app_review = AppReview.find(params[:id])
+            app_review.destroy
+            message = {:success => "Review deleted successfully"}
+            message.to_json
+        else
+            message = {:error => "Review does not exist"}
             message.to_json
         end
     end
