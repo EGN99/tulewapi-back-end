@@ -121,10 +121,9 @@ class ApplicationController < Sinatra::Base
 
     post '/app_reviews' do 
         comment = params[:comment]
-        star_rating = params[:star_rating]
 
-        if(comment.present? && star_rating.present?)
-            app_review = AppReview.create(comment: comment, star_rating: body, user_id: user.id)
+        if(comment.present?)
+            app_review = AppReview.create(comment: comment, user_id: user.id)
             if app_review
                 message = {:success => "Review created successfully"}
                 message.to_json
