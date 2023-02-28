@@ -39,6 +39,14 @@ class ApplicationController < Sinatra::Base
         Review.find_by(params).to_json
     end
 
+    get '/favorites' do
+        Favorite.all.to_json
+    end
+
+    get '/favorites/:id' do
+        Favorite.find(params[:id]).to_json
+    end
+
     post '/users' do 
         first_name = params[:first_name]
         last_name = params[:last_name]
@@ -65,7 +73,7 @@ class ApplicationController < Sinatra::Base
     end
 
     delete "/users/:id" do
-        count_users = User.where(id: params[:id]).count{}
+        count_users = User.where(id: params[:id]).count()
         if count_users > 0
             user = User.find(params[:id])
             user.destroy
@@ -78,7 +86,7 @@ class ApplicationController < Sinatra::Base
     end
 
     delete "/reviews/:id" do
-        count_reviews = Review.where(id: params[:id]).count{}
+        count_reviews = Review.where(id: params[:id]).count()
         if count_reviews > 0
             review = Review.find(params[:id])
             review.destroy
@@ -91,7 +99,7 @@ class ApplicationController < Sinatra::Base
     end
 
     delete "/favorites/:id" do
-        count_favorites = Favorite.where(id: params[:id]).count{}
+        count_favorites = Favorite.where(id: params[:id]).count()
         if count_favorites > 0
             favorite = Favorite.find(params[:id])
             favorite.destroy
