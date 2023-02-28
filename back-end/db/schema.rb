@@ -13,14 +13,11 @@
 ActiveRecord::Schema.define(version: 2023_02_28_100627) do
 
   create_table "app_reviews", force: :cascade do |t|
-    t.text "description"
+    t.string "comment"
     t.integer "star_rating"
-    t.integer "user_id", null: false
-    t.integer "restaurant_id", null: false
+    t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["restaurant_id"], name: "index_app_reviews_on_restaurant_id"
-    t.index ["user_id"], name: "index_app_reviews_on_user_id"
   end
 
   create_table "favorites", force: :cascade do |t|
@@ -54,6 +51,4 @@ ActiveRecord::Schema.define(version: 2023_02_28_100627) do
     t.string "password"
   end
 
-  add_foreign_key "app_reviews", "restaurants"
-  add_foreign_key "app_reviews", "users"
 end

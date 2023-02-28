@@ -2,10 +2,9 @@ class CreateAppReviews < ActiveRecord::Migration[6.1]
   def change
     create_table :app_reviews do |t|
 
-      t.text :description
+      t.string :comment
       t.integer :star_rating
-      t.references :user, null: false, foreign_key: true
-      t.references :restaurant, null: false, foreign_key: true
+      t.integer :user_id
 
       t.timestamps
     end
