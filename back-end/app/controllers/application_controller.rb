@@ -48,16 +48,16 @@ class ApplicationController < Sinatra::Base
     end
 
     post '/users' do 
-        first_name = params[:first_name]
-        last_name = params[:last_name]
+        username = params[:username]
         email = params[:email]
+        password = params[:password]
 
-        if(first_name.present? && last_name.present? && email.present?)
+        if(username.present? && email.present? && password.present?)
             check_email_exists = User.where(email:email).count()
             puts("....", check_email_exists)
 
             if check_email_exists < 1
-                user = User.create(first_name:first_name, last_name:last_name, email:email)
+                user = User.create(username:username, email:email, password:password)
                 if user
                     message = {:success => "User created successfully"}
                     message.to_json
