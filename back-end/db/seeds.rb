@@ -5,6 +5,7 @@ puts "Seeding sample data..."
   User.create(
     username: Faker::Internet.username,
     email: Faker::Internet.email
+    password: 123456
   )
 end
 
@@ -35,7 +36,7 @@ end
 
 # create 25 fake reviews associated with random users
 25.times do
-  AppReview.create!(
+  AppReview.create(
     comment: Faker::Lorem.sentence,
     star_rating: rand(1..5),
     user_id: rand(User.first.id..User.last.id)
