@@ -1,10 +1,11 @@
 class ApplicationController < Sinatra::Base
-
-before do
-  headers 'Access-Control-Allow-Origin' => '*',
-          'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
-          'Access-Control-Allow-Headers' => 'Content-Type'
-end
+    set :default_content_type, 'application/json'
+    # before do
+    #   headers 'Access-Control-Allow-Origin' => '*',
+    #           'Access-Control-Allow-Methods' => ['OPTIONS', 'GET', 'POST', 'PUT', 'DELETE'],
+    #           'Access-Control-Allow-Headers' => '*',
+    #           'Access-Control-Allow-Credentials' => 'true'
+    # end
 
     get '/restaurants' do
         Restaurant.all.to_json
@@ -14,7 +15,7 @@ end
         Restaurant.find(params[:id]).to_json
     end
 
-    get '/MyRestaurant/:id' do
+    get '/myrestaurant/:id' do
         restaurant = Restaurant.find(params[:id])
         restaurant.to_json(include: { 
             reviews: { 

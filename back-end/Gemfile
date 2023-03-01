@@ -19,3 +19,7 @@ gem "rerun"
 gem "webrick"
 
 gem "pry"
+
+gem "rack-contrib", "~> 2.3"
+
+gem "rack-cors", "~> 1.1"
