@@ -11,12 +11,25 @@ The API contains User,Restaurant, Review, AppReview and Favorite models and stor
 The deployed application is hosted here: {URL coming soon}
 
 ## Setup/Installation Requirements
-    -Fork and clone the repository to your machine. Use git clone git@github.com:EGN99/tulewapi-back-end.git
-    -Run bundle install to install the required gems
-    -Run bundle exec rake db:migrate to setup the database
-    -Run bundle exec rake db:seed to seed the database
-    -Run bundle exec rake server to start the server
-    -Run bundle exec rake console to start the console
+Fork and clone the repository to your machine. Use 
+
+    git clone git@github.com:EGN99/tulewapi-back-end.git
+
+Install the required Gems by running 
+
+    bundle install
+
+Setup the database by running
+
+    bundle exec rake db:migrate
+
+Seed the database with sample data by running
+
+    bundle exec rake db:seed
+
+Start the server by running
+
+    bundle exec rake server
 
 #### ERD
 ![image](https://user-images.githubusercontent.com/117892936/222237896-f639fabe-2635-4d73-a19e-839ccc3c1dff.png)
@@ -25,12 +38,16 @@ The deployed application is hosted here: {URL coming soon}
 There are no bugs in this project
 
 ## Technologies Used
-Ruby
-SQLite
+-Ruby
+
+-SQLite
 
 ## Support/Contact Details
 elvisgitau103@gmail.com
+
 (+254) 0703471813
+
 ## License
-LIcensed under the [MIT License][https://github.com/EGN99/tulewapi-back-end/blob/main/back-end/LICENSE] 
+LIcensed under the [MIT License][https://github.com/EGN99/tulewapi-back-end/blob/main/back-end/LICENSE]
+
 Copyright (c) 2023 **Elvis Gitau**   
