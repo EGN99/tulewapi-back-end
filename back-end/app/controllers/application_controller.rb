@@ -131,6 +131,16 @@ class ApplicationController < Sinatra::Base
         end
     end
 
+    post "/favorites" do
+        count_favorites = Favorite.where(id: params[:id]).count()
+        if count_favorites == 0
+            Favorite.create(user_id:user.id,restaurant_id:restaurant.id)
+        else
+            message = {:error => "favorite already exists"}
+            message.to_json
+        end
+    end
+
     delete "/favorites/:id" do
         count_favorites = Favorite.where(id: params[:id]).count()
         if count_favorites > 0
