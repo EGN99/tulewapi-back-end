@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_02_28_112150) do
+ActiveRecord::Schema.define(version: 2023_03_09_082430) do
 
   create_table "app_reviews", force: :cascade do |t|
     t.string "comment"
@@ -22,6 +22,18 @@ ActiveRecord::Schema.define(version: 2023_02_28_112150) do
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
     t.integer "restaurant_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "reservations", force: :cascade do |t|
+    t.integer "restaurant_id"
+    t.integer "user_id"
+    t.integer "num_clients"
+    t.integer "table_id"
+    t.time "time"
+    t.date "date"
+    t.string "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -38,6 +50,15 @@ ActiveRecord::Schema.define(version: 2023_02_28_112150) do
     t.integer "restaurant_id"
     t.integer "user_id"
     t.string "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "tables", force: :cascade do |t|
+    t.string "name"
+    t.integer "capacity"
+    t.integer "restaurant_id"
+    t.string "description"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
